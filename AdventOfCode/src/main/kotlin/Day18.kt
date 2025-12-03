@@ -36,10 +36,7 @@ fun manhattan(a: Pair<Int, Int>, b: Pair<Int, Int>): Int =
  * @param grid The grid representing the environment
  * @return The shortest path as a list of coordinates, or null if no path exists
  */
-fun getShortestPath(grid:List<List<Char>>):List<Pair<Int, Int>>? {
-
-    val startPos = 0 to 0
-    val endPos = grid.first().lastIndex to grid.first().lastIndex
+fun getShortestPath(grid:List<List<Char>>, startPos:Pair<Int,Int>, endPos:Pair<Int,Int>):List<Pair<Int, Int>>? {
     val closedList: MutableList<GridNode> = mutableListOf()
     val openList: PriorityQueue<GridNode> = PriorityQueue(nodeComparator)
 
@@ -125,5 +122,5 @@ fun question18(filename:String): MutableList<Pair<Int, Int>> {
 fun main() {
     val coords = question18("src/main/resources/Day18.txt")
     val grid = initialiseGrid(71, coords.take(1024))
-    println(getShortestPath(grid)!!.size - 1)
+    println(getShortestPath(grid, 0 to 0, grid.first().lastIndex to grid.first().lastIndex)!!.size - 1)
 }
